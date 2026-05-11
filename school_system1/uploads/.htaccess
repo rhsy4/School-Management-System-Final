@@ -1,0 +1,12 @@
+# PHP файл болон хортой файлыг ажиллуулахыг хориглох
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+
+# Зөвхөн зөвшөөрөгдсөн медиа файлыг дамжуулах
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|pdf|xlsx|csv)$">
+    Require all granted
+</FilesMatch>
+
+# Директорийн жагсаалт харуулахыг хориглох
+Options -Indexes

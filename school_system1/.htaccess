@@ -1,0 +1,29 @@
+# tests/, tools/, backups/, scratch/ хавтсыг вэбээс хаах
+RedirectMatch 403 ^/school_system1/tests/
+RedirectMatch 403 ^/school_system1/tools/
+RedirectMatch 403 ^/school_system1/backups/
+RedirectMatch 403 ^/school_system1/scratch/
+
+# Dev болон тест файлуудыг хаах
+<FilesMatch "^(seed\.php|test_db\.php|test_student\.php|auto_login\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Аюулгүй байдлын хамгаалалт
+<FilesMatch "^(\.env|\.htaccess|\.git|composer\.json|package\.json|schema\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Security headers (if mod_headers is enabled)
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/javascript application/javascript
+</IfModule>
